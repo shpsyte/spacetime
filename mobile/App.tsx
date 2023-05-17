@@ -7,6 +7,10 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
+import Stripes from './src/assets/stripes.svg'
+import { styled } from 'nativewind'
+
+const StyledStripes = styled(Stripes)
 
 export default function App() {
   const [hasLoadedFonts] = useFonts({
@@ -26,6 +30,7 @@ export default function App() {
         left: '-100%',
       }}
     >
+      <StyledStripes className="absolute left-0" />
       {/* <Text className="font-title text-5xl text-gray-50">Rocketseat</Text> */}
       <StatusBar style="light" translucent />
     </ImageBackground>
