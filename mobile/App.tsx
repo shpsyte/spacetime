@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
-import { Text, View } from 'react-native'
-
+import { ImageBackground, Text, View } from 'react-native'
+import blurBg from './src/assets/bg-blur.png'
 import {
   useFonts,
   Roboto_400Regular,
@@ -18,9 +18,16 @@ export default function App() {
   if (!hasLoadedFonts) return null
 
   return (
-    <View className="flex-1 items-center justify-center bg-gray-900">
-      <Text className="font-title text-5xl text-gray-50">Rocketseat</Text>
+    <ImageBackground
+      source={blurBg}
+      className="relative flex-1 items-center bg-gray-900"
+      imageStyle={{
+        position: 'absolute',
+        left: '-100%',
+      }}
+    >
+      {/* <Text className="font-title text-5xl text-gray-50">Rocketseat</Text> */}
       <StatusBar style="light" translucent />
-    </View>
+    </ImageBackground>
   )
 }
