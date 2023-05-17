@@ -5,9 +5,15 @@
 GET {{ baseUrl }}/users HTTP/1.1
 Content-Type: application/json
 
- 
-### 
+
+###  Get All Memories
 GET {{ baseUrl }}/memories HTTP/1.1
+Content-Type: application/json
+
+###
+ 
+###  Get One Memory By ID
+GET {{ baseUrl }}/memories/4e796340-3218-4d25-9306-779092b0de6b HTTP/1.1
 Content-Type: application/json
 
 ###
