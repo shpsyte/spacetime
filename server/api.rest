@@ -29,3 +29,11 @@ Content-Type: application/json
 }
  
 ###  Update Memory
+PUT  {{ baseUrl }}/memories/2e52bb8d-9618-4a38-a3c1-92e2ffc93e06
+Content-Type: application/json
+
+{
+    "content": "oi",
+    "coverUrl": "sfs",
+    "isPublic": "1"
+}
