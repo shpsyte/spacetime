@@ -2,19 +2,30 @@
 
 
 ### 
-GET {{ baseUrl }}/users HTTP/1.1
+GET {{ baseUrl }}/users 
 Content-Type: application/json
 
 
 ###  Get All Memories
-GET {{ baseUrl }}/memories HTTP/1.1
+GET {{ baseUrl }}/memories 
 Content-Type: application/json
 
 ###
  
 ###  Get One Memory By ID
-GET {{ baseUrl }}/memories/4e796340-3218-4d25-9306-779092b0de6b HTTP/1.1
+GET {{ baseUrl }}/memories/4e796340-3218-4d25-9306-779092b0de6b  
 Content-Type: application/json
 
 ###
 
+###  Create Memory
+POST {{ baseUrl }}/memories 
+Content-Type: application/json
+
+{
+    "content": "test",
+    "coverUrl": "sfs",
+    "isPublic": "1"
+}
+ 
+###  Update Memory
