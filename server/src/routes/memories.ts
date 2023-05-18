@@ -25,7 +25,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
     })
   })
 
-  app.get('/memories/:id', async (request) => {
+  app.get('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -37,6 +37,12 @@ export async function memoriesRoutes(app: FastifyInstance) {
         id,
       },
     })
+
+    if (!memory.isPublic && memory.userId !== request.user.sub) {
+      return reply.status(403).send({
+        message: 'You are not authorized to access this memory',
+      })
+    }
 
     return memory
   })
@@ -55,13 +61,14 @@ export async function memoriesRoutes(app: FastifyInstance) {
         content,
         isPublic,
         coverUrl,
-        userId: 'b03d289e-ec53-4ee5-bdc6-018f9ea787c5',
+        userId: req.user.sub,
       },
     })
 
     return memory
   })
-  app.put('/memories/:id', async (req) => {
+
+  app.put('/memories/:id', async (req, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -76,7 +83,19 @@ export async function memoriesRoutes(app: FastifyInstance) {
 
     const { content, isPublic, coverUrl } = bodySchema.parse(req.body)
 
-    const memory = await prisma.memory.update({
+    let memory = await prisma.memory.findUniqueOrThrow({
+      where: {
+        id,
+      },
+    })
+
+    if (!memory.isPublic && memory.userId !== req.user.sub) {
+      return reply.status(403).send({
+        message: 'You are not authorized to access this memory',
+      })
+    }
+
+    memory = await prisma.memory.update({
       where: {
         id,
       },
@@ -89,12 +108,25 @@ export async function memoriesRoutes(app: FastifyInstance) {
 
     return memory
   })
-  app.delete('/memories:/id', async (req) => {
+
+  app.delete('/memories:/id', async (req, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
 
     const { id } = paramsSchema.parse(req.params)
+
+    const memory = await prisma.memory.findUniqueOrThrow({
+      where: {
+        id,
+      },
+    })
+
+    if (!memory.isPublic && memory.userId !== req.user.sub) {
+      return reply.status(403).send({
+        message: 'You are not authorized to access this memory',
+      })
+    }
 
     await prisma.memory.delete({
       where: {
