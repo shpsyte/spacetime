@@ -13,6 +13,7 @@ import { styled } from 'nativewind'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
 import { useEffect } from 'react'
 import { api } from './src/lib/api'
+import * as SecureStore from 'expo-secure-store'
 
 // Endpoint
 const discovery = {
@@ -56,10 +57,12 @@ export default function App() {
           code,
         })
         .then((res) => {
-          console.log(res.data)
+          const { token } = res.data
+          console.log(token)
+          SecureStore.setItemAsync('token', token)
         })
         .catch((err) => {
-          console.log(err)
+          console.log('Error', err)
         })
     }
   }, [response])
