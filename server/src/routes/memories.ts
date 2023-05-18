@@ -2,9 +2,11 @@ import { FastifyInstance } from 'fastify'
 import { prisma } from '../lib/prima'
 import { z } from 'zod'
 export async function memoriesRoutes(app: FastifyInstance) {
-  app.get('/memories', async (req) => {
+  app.addHook('preHandler', async (req) => {
     await req.jwtVerify()
+  })
 
+  app.get('/memories', async (req) => {
     const memories = await prisma.memory.findMany({
       where: {
         userId: req.user.sub,
