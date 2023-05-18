@@ -1,5 +1,6 @@
 @baseUrl = http://localhost:3333
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVpei5qIiwiYXZhdGFyVXJsIjoiaHR0cHM6Ly9hdmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzM4OTE2MTA_dj00Iiwic3ViIjoiZmUxNzJjZjktM2M4ZC00MGIwLWIwZjYtMDBhZGM3OTI4NTk4IiwiaWF0IjoxNjg0NDQwODQxLCJleHAiOjE2ODcwMzI4NDF9.g11ohJGvN_AGQPLdDEpqAYMM3UqI1KzYRituEoUR6CU
 
 ### 
 GET {{ baseUrl }}/users 
@@ -9,6 +10,7 @@ Content-Type: application/json
 ###  Get All Memories
 GET {{ baseUrl }}/memories 
 Content-Type: application/json
+Authorization: Bearer {{ token }}
 
 ###
  
@@ -45,4 +47,12 @@ Content-Type: application/json
 
 {
     "code": "f2ff172243e5b65b3965"
+}
+
+###  Getting User from Giuthub
+POST  {{ baseUrl }}/register
+Content-Type: application/json
+
+{
+    "code": "4d525cb21409f03ebc59"
 }
