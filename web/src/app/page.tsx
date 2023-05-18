@@ -1,5 +1,3 @@
-import { User } from 'lucide-react'
-
 import Copyright from '@/components/Copyright'
 import Hero from '@/components/Hero'
 import Sigin from '@/components/Sigin'

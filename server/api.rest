@@ -37,3 +37,12 @@ Content-Type: application/json
     "coverUrl": "sfs",
     "isPublic": "1"
 }
+
+
+###  Getting User from Giuthub
+POST  {{ baseUrl }}/register
+Content-Type: application/json
+
+{
+    "code": "0ff2041eb947715d3b5d"
+}
