@@ -44,5 +44,5 @@ POST  {{ baseUrl }}/register
 Content-Type: application/json
 
 {
-    "code": "0ff2041eb947715d3b5d"
+    "code": "f2ff172243e5b65b3965"
 }
