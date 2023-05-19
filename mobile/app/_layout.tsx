@@ -8,7 +8,7 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
-import { Slot, SplashScreen, useRouter } from 'expo-router'
+import { Slot, SplashScreen, Stack, useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
 export default function Layout() {
@@ -36,7 +36,12 @@ export default function Layout() {
       <StyledStripes className="absolute left-0" />
       <StatusBar style="light" translucent />
 
-      <Slot />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: 'transparent' },
+        }}
+      />
     </ImageBackground>
   )
 }
