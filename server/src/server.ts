@@ -5,8 +5,11 @@ import cors from '@fastify/cors'
 import { memoriesRoutes } from './routes/memories'
 import { authRoute } from './routes/auth'
 import jwt from '@fastify/jwt'
-
+import { uploadRoutes } from './routes/upload'
+import multipart from '@fastify/multipart'
 const app = fastify()
+
+app.register(multipart)
 app.register(cors, {
   origin: '*',
   // ['http://localhost:3000', 'http://localhost:3001'],
@@ -17,6 +20,7 @@ app.register(jwt, {
   secret: 'space-2f095052-d782-437e-b69d-0239a8ff1e52',
 })
 
+app.register(uploadRoutes)
 app.register(memoriesRoutes)
 app.register(authRoute)
 

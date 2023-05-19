@@ -56,3 +56,14 @@ Content-Type: application/json
 {
     "code": "7a7ad352ee0d474b9ffc"
 }
+
+###  update file
+# HTTP POST localhost:3333/upload file@~/Downloads/luz.png -f
+
+POST  {{ baseUrl }}/upload
+Content-Type: multipart/form-data 
+
+
+{
+    "file": @~/Downloads/luz.png
+}
