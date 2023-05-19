@@ -18,7 +18,7 @@ export default function Memories() {
   return (
     <ScrollView
       className="flex-1 px-8"
-      style={{
+      contentContainerStyle={{
         paddingTop: top,
         paddingBottom: bottom,
       }}
