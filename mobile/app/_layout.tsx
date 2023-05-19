@@ -28,13 +28,6 @@ export default function Layout() {
     async function checkIfUserIsAuthenticated() {
       const token = await SecureStore.getItemAsync('token')
       setIsAuthenticate(!!token)
-      // if (token) {
-      //   setIsAuthenticate(true)
-      //   router.push('/memories')
-      // } else {
-      //   setIsAuthenticate(false)
-      //   router.push('/login')
-      // }
     }
 
     checkIfUserIsAuthenticated()
@@ -60,12 +53,13 @@ export default function Layout() {
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: 'transparent' },
+          // animation: 'fade',
         }}
       >
         {/* // redirect vai mandar para proxima rota se for true */}
         <Stack.Screen name="index" redirect={isAuthenticate} />
-        <Stack.Screen name="new" />
         <Stack.Screen name="memories" />
+        <Stack.Screen name="new" />
       </Stack>
     </ImageBackground>
   )

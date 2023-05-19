@@ -38,10 +38,12 @@ export default function App() {
   }
 
   useEffect(() => {
-    // console.log(response)
-    // console.log(makeRedirectUri({
-    //   scheme: 'nwlspacetime',
-    // }))
+    console.log(response)
+    console.log(
+      makeRedirectUri({
+        scheme: 'nwlspacetime',
+      })
+    )
 
     if (response?.type === 'success') {
       const { code } = response.params
