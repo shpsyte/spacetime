@@ -23,7 +23,7 @@ app.register(authRoute)
 app
   .listen({
     port: 3333,
-    // host: '0.0.0.0', // to work on docker/mobile
+    host: '0.0.0.0', // to work on docker/mobile
   })
   .then(() =>
     console.log('🚀🚀 Server is running on port http://localhost:3333 '),
