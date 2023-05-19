@@ -64,6 +64,7 @@ export default function Layout() {
       >
         {/* // redirect vai mandar para proxima rota se for true */}
         <Stack.Screen name="index" redirect={isAuthenticate} />
+        <Stack.Screen name="new" />
         <Stack.Screen name="memories" />
       </Stack>
     </ImageBackground>
