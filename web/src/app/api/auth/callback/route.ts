@@ -10,9 +10,10 @@ export async function GET(req: NextRequest) {
     const register = await api.post('/register', {
       code,
     })
+    const redirectTo = req.cookies.get('redirectTo')?.value || '/'
     const { token } = register.data
 
-    const rediretUrl = new URL('/', req.url)
+    const rediretUrl = new URL(redirectTo, req.url)
 
     const cookieExiresInSeconds = 60 * 60 * 24 * 365 // 1 year
 

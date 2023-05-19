@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from '../assets/logo.svg'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -15,12 +16,12 @@ export default function Hero() {
           com o mundo!
         </p>
       </div>
-      <a
+      <Link
         className="inline-block rounded-full bg-gray-500 px-5 py-3 font-alt text-sm uppercase leading-none text-black transition-colors hover:bg-green-600"
-        href=""
+        href="/memories/new"
       >
         Cadastrar lembranca
-      </a>
+      </Link>
     </div>
   )
 }

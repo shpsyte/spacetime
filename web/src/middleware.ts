@@ -5,9 +5,13 @@ export function middleware(request: NextRequest) {
   // get the cookies of the request
 
   const token = request.cookies.get('token')?.value
-
+  // HttpOnly cookies can't be read from the client (User or JavaScript)
   if (!token) {
-    return NextResponse.redirect(new URL(signin))
+    return NextResponse.redirect(signin, {
+      headers: {
+        'Set-Cookie': `redirectTo=${request.url}; Path=/; max-age=30; HttpOnly;`,
+      },
+    })
   }
 
   return NextResponse.next()
