@@ -6,11 +6,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import * as SecureStore from 'expo-secure-store'
 import { useEffect, useState } from 'react'
 import { api } from '../src/lib/api'
-
+import dayJs from 'dayjs'
 type memoryType = {
   coverUrl: string
   excerpt: string
   id: string
+  createdAt: string
 }
 export default function Memories() {
   const { bottom, top } = useSafeAreaInsets()
@@ -68,7 +69,7 @@ export default function Memories() {
               <View className="flex-row items-center gap-2">
                 <View className="h-px w-5 bg-gray-50" />
                 <Text className="font-body text-xs text-gray-100">
-                  asdfasdfasdf
+                  {dayJs(memory.createdAt).format('D[ de ] MMM, YYYY')}
                 </Text>
               </View>
               <View className="space-y-4 px-8">
