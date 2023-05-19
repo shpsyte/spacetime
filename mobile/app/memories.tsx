@@ -4,14 +4,35 @@ import { Link, useRouter } from 'expo-router'
 import Icon from '@expo/vector-icons/Feather'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import * as SecureStore from 'expo-secure-store'
+import { useEffect, useState } from 'react'
+import { api } from '../src/lib/api'
+
+type memoryType = {
+  coverUrl: string
+  excerpt: string
+  id: string
+}
 export default function Memories() {
   const { bottom, top } = useSafeAreaInsets()
   const router = useRouter()
+  const [memories, setMemories] = useState<memoryType[]>([])
 
   async function signOut() {
     await SecureStore.deleteItemAsync('token')
     router.push('/')
   }
+
+  useEffect(() => {
+    async function getMemories() {
+      const response = await api.get('/memories', {
+        headers: {
+          Authorization: `Bearer ${await SecureStore.getItemAsync('token')}`,
+        },
+      })
+      setMemories(response.data)
+    }
+    getMemories()
+  }, [])
 
   return (
     <ScrollView
@@ -41,36 +62,39 @@ export default function Memories() {
       </View>
 
       <View className="mt-6 space-y-10">
-        <View className="space-y-4 px-8">
-          <View className="flex-row items-center gap-2">
-            <View className="h-px bg-gray-50" />
-            <Text className="font-body text-xs text-gray-100">
-              12 de abril, 2023
-            </Text>
-          </View>
-          <View className="space-y-4">
-            <View className="flex-row items-center gap-2"></View>
-            <Image
-              className="aspect-video w-full rounded-lg"
-              alt=""
-              source={{
-                uri: 'http://localhost:3333/uploads/f9a501df-412a-4fc9-abbc-36cf2296b2a4.png',
-              }}
-            />
-            <Text className="font-body text-base leading-relaxed text-gray-100">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-              fugit facere aliquam ipsum molestiae, nisi, accusamus cupiditate,
-              minima eaque quaerat deleniti itaque eius harum aspernatur?
-              Aperiam cumque sequi ipsum cupiditate!
-            </Text>
-          </View>
-          <Link href="/memories/id" asChild>
-            <TouchableOpacity className="flex-row items-center gap-2">
-              <Text className="font-body text-sm text-gray-200">Ler mais</Text>
-              <Icon name="arrow-right" size={16} color="#9e9ea0" />
-            </TouchableOpacity>
-          </Link>
-        </View>
+        {memories.map((memory) => {
+          return (
+            <View className="space-y-4 " key={memory.id}>
+              <View className="flex-row items-center gap-2">
+                <View className="h-px w-5 bg-gray-50" />
+                <Text className="font-body text-xs text-gray-100">
+                  asdfasdfasdf
+                </Text>
+              </View>
+              <View className="space-y-4 px-8">
+                <View className="flex-row items-center gap-2"></View>
+                <Image
+                  className="aspect-video w-full rounded-lg"
+                  alt=""
+                  source={{
+                    uri: memory.coverUrl,
+                  }}
+                />
+                <Text className="font-body text-base leading-relaxed text-gray-100">
+                  {memory.excerpt}
+                </Text>
+              </View>
+              <Link href="/memories/id" asChild>
+                <TouchableOpacity className="flex-row items-center gap-2 px-8">
+                  <Text className="font-body text-sm text-gray-200">
+                    Ler mais
+                  </Text>
+                  <Icon name="arrow-right" size={16} color="#9e9ea0" />
+                </TouchableOpacity>
+              </Link>
+            </View>
+          )
+        })}
       </View>
     </ScrollView>
   )
