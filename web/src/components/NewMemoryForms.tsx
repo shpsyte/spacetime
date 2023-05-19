@@ -4,8 +4,10 @@ import { Camera } from 'lucide-react'
 import React, { FormEvent } from 'react'
 import MediaPicker from './MediaPicker'
 import { api } from '@/lib/api'
+import { useRouter } from 'next/navigation'
 
 export default function NewMemoryForms() {
+  const route = useRouter()
   async function handleCreatememory(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -26,6 +28,8 @@ export default function NewMemoryForms() {
       content: formData.get('content'),
       isPublic: formData.get('isPublic'),
     })
+
+    route.push('/')
   }
   return (
     <>
