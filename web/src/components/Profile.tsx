@@ -1,5 +1,6 @@
 import { getUser } from '@/lib/auth'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Profile() {
@@ -17,7 +18,7 @@ export default function Profile() {
       <p className="max-w-[140px] text-sm leading-snug">
         {name}
         <a
-          href="#"
+          href="/api/auth/logout"
           className="block text-xs text-purple-500 hover:text-purple-400"
         >
           Logout

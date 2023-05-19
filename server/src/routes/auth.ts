@@ -41,7 +41,7 @@ export async function authRoute(app: FastifyInstance) {
       },
     })
 
-    console.log('userInfo', userResponse.data)
+    // console.log('userInfo', userResponse.data)
     const userInfo = userSchema.parse(userResponse.data)
 
     // check if user exists

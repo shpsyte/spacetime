@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
 ### 
-GET {{ baseUrl }}/api/auth/callback?code=2132
+GET {{ baseUrl }}/api/auth/callback?code=33107950b78e5105edce
 Content-Type: application/json
  
